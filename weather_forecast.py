@@ -57,6 +57,13 @@ def get_city_url(city):
     string = urlopen("http://www.imd.gov.in/pages/city_weather_show.php", data=bytes(data,'utf-8')).read()
     soup = BeautifulSoup(string,'html.parser')
     return soup.findAll("iframe")[0].attrs['src']
+
+
+
+def get_city_weather(cityname):
+    url = get_city_url(cityname)
+    soup = fetch_data_from_url(url)
+    return scrap_required_data(soup)
     
 
 if __name__ == "__main__":
